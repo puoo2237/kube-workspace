@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-basic
+  namespace: delivery
+data:
+  MYSQL_DATABASE: jpa

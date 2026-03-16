@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-deploy
+  namespace: delivery
+spec:
+  selector:
+    matchLabels:
+      app: front-app
+  template:
+    metadata:
+      labels:
+        app: front-app
+    spec:
+      containers:
+      - name: front-con
+        image: choheewon00/react-quiz:1.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

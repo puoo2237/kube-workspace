@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-basic
+  namespace: delivery
+data:
+  DB_USER: admin-cm-test
+  DB_URL: localhost-cm-test

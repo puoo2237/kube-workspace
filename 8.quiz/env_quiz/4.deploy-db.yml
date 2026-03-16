@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quiz
+  namespace: delivery
+spec:
+  selector:
+    matchLabels:
+      app: quiz
+  template:
+    metadata:
+      labels:
+        app: quiz
+    spec:
+      containers:
+      - name: quiz-con
+        image: mysql:8.4
+        ports:
+        - containerPort: 3306
+        envFrom:
+          - secretRef:
+              name: mysecret
+          - configMapRef:
+              name: cm-basic

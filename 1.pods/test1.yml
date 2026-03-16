@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: label-app-1
+  labels:
+    group: web
+    app: app-1
+    version: v1
+    env: prod
+spec:
+  containers:
+  - name: webapp-1
+    image: nginx:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+    - containerPort: 80

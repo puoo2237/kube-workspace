@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cm-deploy
+  namespace: delivery
+spec:
+  selector:
+    matchLabels:
+      app: cm-deploy
+  template:
+    metadata:
+      labels:
+        app: cm-deploy
+    spec:
+      containers:
+      - name: myapp
+        image: nginx:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        envFrom:
+          - secretRef:
+              name: mysecret

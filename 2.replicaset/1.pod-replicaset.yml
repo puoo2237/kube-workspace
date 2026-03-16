@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs-basic
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: value
+  template:
+    metadata:
+      labels:
+        app: value
+    spec:
+      containers:
+        - name: nginx-con
+          image: nginx:latest
+          resources:
+            limits:
+              memory: "100Mi"
+              cpu: "500m"

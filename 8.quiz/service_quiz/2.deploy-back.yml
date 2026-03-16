@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-deploy
+  namespace: delivery
+spec:
+  selector:
+    matchLabels:
+      app: back-app
+  template:
+    metadata:
+      labels:
+        app: back-app
+    spec:
+      containers:
+      - name: back-con
+        image: choheewon00/boot-quiz:1.0
+        resources:
+          limits:
+            memory: "300Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080

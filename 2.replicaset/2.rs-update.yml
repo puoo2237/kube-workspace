@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs-rollback
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-app
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+        version: v1
+    spec:
+      containers:
+        - name: nginx-con
+          image: nginx:1.25.4 # nginx:latest
+          resources:
+            limits:
+              memory: "100Mi"
+              cpu: "500m"

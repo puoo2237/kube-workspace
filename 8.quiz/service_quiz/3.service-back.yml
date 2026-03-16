@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-svc
+  namespace: delivery
+spec:
+  type: ClusterIP
+  selector:
+    app: back-app
+  ports:
+  - port: 20000
+    targetPort: 10000

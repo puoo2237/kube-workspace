@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: board-deploy
+  namespace: delivery
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: board-app
+  template:
+    metadata:
+      labels:
+        app: board-app
+    spec:
+      containers:
+      - name: board-con
+        image: httpd:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

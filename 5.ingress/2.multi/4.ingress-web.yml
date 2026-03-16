@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myingress
+  namespace: delivery
+  annotations:  # 경로를 새롭게 만들어줌 (/api/v1 -> / 으로 변경하여 service 연결)
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    # - host: <Host>
+    - http:
+        paths:
+          - pathType: Prefix
+            path: "/board"
+            backend:
+              service:
+                name: board-svc
+                port:
+                  number: 10000
+          - pathType: Prefix
+            path: "/member"
+            backend:
+              service:
+                name: member-svc
+                port:
+                  number: 10000
